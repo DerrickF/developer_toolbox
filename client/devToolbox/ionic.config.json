@@ -1,5 +1,7 @@
 {
   "name": "devToolbox",
-  "integrations": {},
-  "type": "ionic-angular"
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
 }
