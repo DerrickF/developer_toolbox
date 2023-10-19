@@ -1,13 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  imports: [
+    IonicModule,
+    CommonModule,
+    RouterLink,
+    RouterOutlet
+  ],
 })
-export class AppComponent {
+export class App {
   public appPages = [
-    { title: 'Todo List', url: '/folder/Inbox', icon: 'list' },
-    { title: 'Pomodoro Timer', url: '/folder/Outbox', icon: 'timer' },
+    { title: 'Todo List', url: '/todos', icon: 'list' },
+    { title: 'Pomodoro Timer', url: '/home', icon: 'timer' },
     { title: 'JWT Decoder', url: '/folder/Favorites', icon: 'barcode' },
     { title: 'Img Formatter', url: '/folder/Archived', icon: 'cloud-upload' },
     { title: 'Scratchpad', url: '/folder/Trash', icon: 'pencil' },
