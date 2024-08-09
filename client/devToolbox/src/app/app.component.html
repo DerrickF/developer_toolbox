@@ -1,21 +1,62 @@
-<ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content">
-      <ion-content>
-        <ion-item lines="full" class="ion-padding" [routerLink]="['']">
-          <ion-title class="menu-title">Dev Toolbox</ion-title>
-          <ion-icon size="large" slot="start" name="briefcase-sharp"></ion-icon>
-        </ion-item>
-        <ion-list id="nav-list" >
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
-</ion-app>
+<div class="drawer lg:drawer-open">
+  <input #drawerToggle id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <!-- Page content here -->
+    <div class="navbar bg-base-100 border-b-4 border-primary">
+      <div class="flex-none">
+        <button for="my-drawer-2" class="btn btn-square btn-ghost drawer-button lg:hidden" (click)="drawerToggle.checked= !drawerToggle.checked">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-5 w-5 stroke-current">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1">
+        <div class="text-xl">DevToolbox</div>
+      </div>
+      <div class="flex-none">
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li>
+              <a class="justify-between">
+                Profile
+                <span class="badge">New</span>
+              </a>
+            </li>
+            <li><a>Settings</a></li>
+            <li><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu bg-base-100 text-base-content min-h-full w-80">
+      <!-- Sidebar content here -->
+      <img class="cursor-pointer" [routerLink]="['/']" routerLinkActive="router-link-active"  src="../assets/devToolbox.webp" width="320px" alt="">
+      <li class="mt-5"><a [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a></li>
+      <li><a [routerLink]="['/todos']" routerLinkActive="router-link-active" >Todos</a></li>
+      <li><a [routerLink]="['/timer']" routerLinkActive="router-link-active">Pomodoro Timer</a></li>
+      <li><a>JWT Decoder</a></li>
+      <li><a>JSON Formatter</a></li>
+    </ul>
+  </div>
+</div>

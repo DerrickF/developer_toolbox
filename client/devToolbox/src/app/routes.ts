@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-
 export const routes: Route[] = [
   {
     path: '',
@@ -8,6 +7,10 @@ export const routes: Route[] = [
   },
   {
     path: 'todos',
-    loadComponent: () => import('./todo-list/todo-list.component').then(m => m.TodoComponent),
+    loadComponent: () => import('./todos/todos.component').then(m => m.TodosComponent),
+  },
+  {
+    path: 'timer',
+    loadComponent: () => import('./pomodoro-timer/pomodoro-timer.component').then(m => m.TimerComponent),
   },
 ];
