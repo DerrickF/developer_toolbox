@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-todos',
@@ -27,7 +28,7 @@ import { FormsModule } from '@angular/forms';
         <div class="card-body flex">
           <ol class="menu bg-base-100 rounded-box max-w-2xl justify-center">
             @for(todo of todos; track $index) {
-              <div class="flex mb-10 border border-primary rounded p-5">
+              <div class="flex m-1 border border-primary rounded p-5">
                 <li class="flex-1 text-lg">
                   <span>{{$index + 1}}: {{todo}}</span>
                 </li>
@@ -48,18 +49,22 @@ import { FormsModule } from '@angular/forms';
 
 export class TodosComponent implements OnInit {
   newTodo: string = "";
-  todos: string[] =  [];
+  todos: string[] = [];
   
-  constructor() { }
+  constructor(private db: LocalStorageService) { }
   
-  ngOnInit() { }
+  ngOnInit() {
+    this.todos = this.db.get('todos') ?? [];
+  }
   
   createTodo() {
     this.todos.push(this.newTodo);
+    this.db.set('todos', this.todos);
     this.newTodo = "";
   }
 
   deleteTodo(index: number) {
     this.todos.splice(index, 1);
+    this.db.set('todos', this.todos);
   }
 }
